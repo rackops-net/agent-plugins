@@ -1,4 +1,10 @@
-# VSCode Titlebar Color Plugin for Claude Code
+# VSCode Integration Tools for Claude Code
+
+A Claude Code marketplace containing VSCode integration plugins.
+
+## Available Plugins
+
+### Titlebar Color Management
 
 A Claude Code plugin that automatically manages VSCode window titlebar colors based on Claude's state, providing visual feedback about whether Claude is actively working or waiting for your input.
 
@@ -44,55 +50,74 @@ Download from [jq releases](https://github.com/stedolan/jq/releases)
 
 ## Installation
 
-### Method 1: As a Claude Code Plugin (Recommended)
+### Option 1: Install from Marketplace (Recommended)
+
+Add this marketplace to your Claude Code configuration:
+
+```bash
+claude marketplace add https://github.com/yourusername/vsclaude
+```
+
+Then install the titlebar plugin:
+
+```bash
+claude plugin install titlebar --marketplace vsclaude
+```
+
+### Option 2: Manual Installation
+
+**⚠️ Important: Known Issue**
+
+Due to a [known bug in Claude Code](https://github.com/anthropics/claude-code/issues/14410), hooks defined in local plugin directories don't execute properly. The workaround is to add the hooks to your global Claude settings file.
 
 1. Clone this repository to your Claude Code plugins directory:
 ```bash
-git clone https://github.com/yourusername/vsclaude-titlebar-plugin.git ~/.claude/plugins/vsclaude-titlebar
+git clone https://github.com/yourusername/vsclaude.git ~/.claude/plugins/local/vsclaude
 ```
 
-2. Enable the plugin through Claude Code's plugin system:
+2. Add the hooks to your `~/.claude/settings.json`:
 ```bash
-claude --enable-plugin vsclaude-titlebar
+# Backup your existing settings first
+cp ~/.claude/settings.json ~/.claude/settings.json.backup
+
+# Then manually add the hooks (see configuration below)
 ```
 
-### Method 2: Manual Installation
+### Hook Configuration (Required for Both Methods)
 
-1. Clone this repository:
-```bash
-git clone https://github.com/yourusername/vsclaude-titlebar-plugin.git
-```
-
-2. Copy the hook configuration to your Claude Code settings:
-```bash
-# For all projects (user-wide)
-cp hooks/hooks.json ~/.claude/hooks/
-
-# OR for a specific project
-cp hooks/hooks.json /path/to/your/project/.claude/hooks/
-```
-
-3. Update the paths in `hooks.json` to point to the scripts:
+Due to the local plugin bug, you must manually add this configuration to your `~/.claude/settings.json` file in the `"hooks"` section:
 ```json
 {
   "hooks": {
-    "UserPromptSubmit": [{
-      "hooks": [{
-        "type": "command",
-        "command": "/absolute/path/to/hooks/scripts/reset-titlebar.sh",
-        "timeout": 5
-      }]
-    }],
-    "Stop": [{
-      "hooks": [{
-        "type": "command",
-        "command": "/absolute/path/to/hooks/scripts/set-yellow-titlebar.sh",
-        "timeout": 5
-      }]
-    }]
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/plugins/local/vsclaude/plugins/titlebar/hooks/scripts/reset-titlebar.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/plugins/local/vsclaude/plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   }
 }
 ```
+
+**Note:** If you already have hooks defined in your settings.json, add these to your existing hook arrays rather than replacing them.
+
+4. **Reload Claude Code** (or restart VSCode) for the hooks to take effect.
 
 ## Usage
 
@@ -114,7 +139,7 @@ These colors are designed to be noticeable but not distracting.
 
 ## Configuration
 
-You can customize the titlebar colors by editing [hooks/scripts/set-yellow-titlebar.sh](hooks/scripts/set-yellow-titlebar.sh):
+You can customize the titlebar colors by editing [plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh](plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh):
 
 ```bash
 TITLEBAR_COLORS='{
@@ -150,14 +175,20 @@ jq --version
 ## File Structure
 
 ```
-vsclaude-titlebar-plugin/
-├── package.json                     # Project metadata
-├── README.md                        # This file
-├── hooks/
-│   ├── hooks.json                  # Claude Code hook configuration
-│   └── scripts/
-│       ├── reset-titlebar.sh       # Reset titlebar colors
-│       └── set-yellow-titlebar.sh  # Set titlebar to yellow
+vsclaude/
+├── .claude-plugin/
+│   └── marketplace.json            # Marketplace configuration
+├── plugins/
+│   └── titlebar/
+│       ├── .claude-plugin/
+│       │   └── plugin.json         # Plugin metadata
+│       └── hooks/
+│           ├── hooks.json          # Claude Code hook configuration
+│           └── scripts/
+│               ├── reset-titlebar.sh       # Reset titlebar colors
+│               └── set-yellow-titlebar.sh  # Set titlebar to yellow
+├── package.json                    # Project metadata
+├── README.md                       # This file
 └── .gitignore
 ```
 

@@ -1,0 +1,5 @@
+{
+  "name": "titlebar",
+  "description": "VSCode titlebar color management based on Claude state",
+  "version": "1.0.0"
+}
