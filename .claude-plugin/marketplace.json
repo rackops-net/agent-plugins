@@ -4,13 +4,12 @@
     "name": "Richard Fairthorne"
   },
   "metadata": {
-    "description": "VSCode integration tools for Claude Code",
-    "pluginRoot": "./plugins"
+    "description": "VSCode integration tools for Claude Code"
   },
   "plugins": [
     {
       "name": "edit-alert",
-      "source": "edit-alert",
+      "source": "./plugins/edit-alert",
       "description": "VSCode edit alert management based on Claude state",
       "version": "1.0.0"
     }
