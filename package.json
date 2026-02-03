@@ -1,5 +1,5 @@
 {
-  "name": "agent-plugins",
+  "name": "code-alert",
   "version": "1.0.0",
   "description": "Claude Code marketplace containing VSCode integration plugins",
   "main": ".claude-plugin/marketplace.json",

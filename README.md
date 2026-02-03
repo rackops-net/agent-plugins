@@ -72,7 +72,7 @@ Due to a [known bug in Claude Code](https://github.com/anthropics/claude-code/is
 
 1. Clone this repository to your Claude Code plugins directory:
 ```bash
-git clone https://github.com/rackops-net/agent-plugins.git ~/.claude/plugins/local/agent-plugins
+git clone https://github.com/rackops-net/agent-plugins.git ~/.claude/plugins/local/code-alert
 ```
 
 2. Add the hooks to your `~/.claude/settings.json`:
@@ -94,7 +94,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/agent-plugins/plugins/edit-alert/hooks/scripts/reset-titlebar.sh",
+            "command": "~/.claude/plugins/local/code-alert/plugins/edit-alert/hooks/scripts/reset-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -105,7 +105,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/agent-plugins/plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh",
+            "command": "~/.claude/plugins/local/code-alert/plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -175,7 +175,7 @@ jq --version
 ## File Structure
 
 ```
-agent-plugins/
+code-alert/
 ├── .claude-plugin/
 │   └── marketplace.json            # Marketplace configuration
 ├── plugins/
