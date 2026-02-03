@@ -1,0 +1,21 @@
+{
+  "name": "vsclaude-titlebar-plugin",
+  "version": "1.0.0",
+  "description": "Claude Code plugin that manages VSCode titlebar colors based on Claude's state",
+  "main": "hooks/hooks.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "vscode",
+    "hooks"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vsclaude-titlebar-plugin.git"
+  }
+}

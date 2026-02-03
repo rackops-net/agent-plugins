@@ -1,0 +1,29 @@
+{
+  "description": "VSCode titlebar color management based on Claude state",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/reset-titlebar.sh",
+            "statusMessage": "Resetting titlebar color",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/set-yellow-titlebar.sh",
+            "statusMessage": "Setting titlebar to yellow",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
