@@ -4,7 +4,7 @@ A Claude Code marketplace containing VSCode integration plugins.
 
 ## Available Plugins
 
-### Titlebar Color Management
+### Edit Alert Management
 
 A Claude Code plugin that automatically manages VSCode window titlebar colors based on Claude's state, providing visual feedback about whether Claude is actively working or waiting for your input.
 
@@ -58,10 +58,10 @@ Add this marketplace to your Claude Code configuration:
 claude marketplace add https://github.com/yourusername/vsclaude
 ```
 
-Then install the titlebar plugin:
+Then install the edit-alert plugin:
 
 ```bash
-claude plugin install titlebar --marketplace vsclaude
+claude plugin install edit-alert --marketplace vsclaude
 ```
 
 ### Option 2: Manual Installation
@@ -94,7 +94,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/vsclaude/plugins/titlebar/hooks/scripts/reset-titlebar.sh",
+            "command": "~/.claude/plugins/local/vsclaude/plugins/edit-alert/hooks/scripts/reset-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -105,7 +105,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/vsclaude/plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh",
+            "command": "~/.claude/plugins/local/vsclaude/plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -139,7 +139,7 @@ These colors are designed to be noticeable but not distracting.
 
 ## Configuration
 
-You can customize the titlebar colors by editing [plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh](plugins/titlebar/hooks/scripts/set-yellow-titlebar.sh):
+You can customize the titlebar colors by editing [plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh](plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh):
 
 ```bash
 TITLEBAR_COLORS='{
@@ -179,7 +179,7 @@ vsclaude/
 ├── .claude-plugin/
 │   └── marketplace.json            # Marketplace configuration
 ├── plugins/
-│   └── titlebar/
+│   └── edit-alert/
 │       ├── .claude-plugin/
 │       │   └── plugin.json         # Plugin metadata
 │       └── hooks/

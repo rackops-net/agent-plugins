@@ -9,9 +9,9 @@
   },
   "plugins": [
     {
-      "name": "titlebar",
-      "source": "titlebar",
-      "description": "VSCode titlebar color management based on Claude state",
+      "name": "edit-alert",
+      "source": "edit-alert",
+      "description": "VSCode edit alert management based on Claude state",
       "version": "1.0.0"
     }
   ]
