@@ -1,18 +1,13 @@
 #!/bin/bash
-# reset-titlebar.sh
+# set-default-titlebar.sh
 # Reset VSCode titlebar to default colors by removing custom color settings
-# Also stops any running blink process
+# Used by blink-loop.sh to alternate back to default
 
 set -e
 
-# Get the directory where this script is located
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Source common functions
-source "$SCRIPT_DIR/common.sh"
-
 # Check if jq is installed
-if ! check_jq; then
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is required but not installed. Please install jq to use this hook." >&2
     exit 0  # Exit gracefully to not block Claude
 fi
 
@@ -26,10 +21,6 @@ if [ -z "$CWD" ]; then
     echo "Error: Could not determine current working directory from hook input" >&2
     exit 0
 fi
-
-# Stop any running blink process
-PID_FILE=$(get_pid_file "$CWD")
-cleanup_blink_process "$PID_FILE"
 
 # Define the settings file path
 SETTINGS_FILE="$CWD/.vscode/settings.json"

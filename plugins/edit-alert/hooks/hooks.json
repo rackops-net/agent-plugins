@@ -18,8 +18,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/set-yellow-titlebar.sh",
-            "statusMessage": "Setting titlebar to yellow",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/start-blink-titlebar.sh",
+            "statusMessage": "Starting titlebar blink alert",
             "timeout": 5
           }
         ]
