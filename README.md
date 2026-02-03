@@ -55,13 +55,13 @@ Download from [jq releases](https://github.com/stedolan/jq/releases)
 Add this marketplace to your Claude Code configuration:
 
 ```bash
-claude marketplace add https://github.com/yourusername/vsclaude
+claude marketplace add https://github.com/rackops-net/agent-plugins
 ```
 
 Then install the edit-alert plugin:
 
 ```bash
-claude plugin install edit-alert --marketplace vsclaude
+claude plugin install edit-alert --marketplace agent-plugins
 ```
 
 ### Option 2: Manual Installation
@@ -72,7 +72,7 @@ Due to a [known bug in Claude Code](https://github.com/anthropics/claude-code/is
 
 1. Clone this repository to your Claude Code plugins directory:
 ```bash
-git clone https://github.com/yourusername/vsclaude.git ~/.claude/plugins/local/vsclaude
+git clone https://github.com/rackops-net/agent-plugins.git ~/.claude/plugins/local/agent-plugins
 ```
 
 2. Add the hooks to your `~/.claude/settings.json`:
@@ -94,7 +94,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/vsclaude/plugins/edit-alert/hooks/scripts/reset-titlebar.sh",
+            "command": "~/.claude/plugins/local/agent-plugins/plugins/edit-alert/hooks/scripts/reset-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -105,7 +105,7 @@ Due to the local plugin bug, you must manually add this configuration to your `~
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/plugins/local/vsclaude/plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh",
+            "command": "~/.claude/plugins/local/agent-plugins/plugins/edit-alert/hooks/scripts/set-yellow-titlebar.sh",
             "timeout": 5
           }
         ]
@@ -175,7 +175,7 @@ jq --version
 ## File Structure
 
 ```
-vsclaude/
+agent-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json            # Marketplace configuration
 ├── plugins/

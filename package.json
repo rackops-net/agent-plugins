@@ -1,21 +1,26 @@
 {
-  "name": "vsclaude-titlebar-plugin",
+  "name": "agent-plugins",
   "version": "1.0.0",
-  "description": "Claude Code plugin that manages VSCode titlebar colors based on Claude's state",
-  "main": "hooks/hooks.json",
+  "description": "Claude Code marketplace containing VSCode integration plugins",
+  "main": ".claude-plugin/marketplace.json",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "claude-code",
     "plugin",
+    "marketplace",
     "vscode",
     "hooks"
   ],
-  "author": "",
+  "author": "Richard Fairthorne",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/vsclaude-titlebar-plugin.git"
-  }
+    "url": "https://github.com/rackops-net/agent-plugins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rackops-net/agent-plugins/issues"
+  },
+  "homepage": "https://github.com/rackops-net/agent-plugins#readme"
 }
