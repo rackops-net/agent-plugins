@@ -1,5 +1,5 @@
 {
   "name": "edit-alert",
   "description": "VSCode edit alert management based on Claude state",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
