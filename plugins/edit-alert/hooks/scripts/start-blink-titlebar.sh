@@ -33,11 +33,17 @@ PID_FILE=$(get_pid_file "$CWD")
 # Cleanup any existing blink process to prevent orphans
 cleanup_blink_process "$PID_FILE"
 
-# Start new blink process in background
-"$SCRIPT_DIR/blink-loop.sh" "$CWD" > /dev/null 2>&1 &
-BLINK_PID=$!
+# Start new blink process in background, fully detached
+# Run in subshell to detach from parent process group
+( "$SCRIPT_DIR/blink-loop.sh" "$CWD" > /dev/null 2>&1 ) &
+
+# Give it a moment to start, then find the actual blink-loop PID
+sleep 0.3
+BLINK_PID=$(pgrep -f "blink-loop.sh $CWD" | head -1)
 
 # Save PID to file for later cleanup
-echo "$BLINK_PID" > "$PID_FILE"
+if [ -n "$BLINK_PID" ]; then
+    echo "$BLINK_PID" > "$PID_FILE"
+fi
 
 exit 0
